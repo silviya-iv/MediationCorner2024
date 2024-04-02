@@ -14,11 +14,12 @@ namespace MediationCorner.Infrastructure.Data.Models
         [Required]
         [ForeignKey(nameof(User))]
         public int UserId { get; set; }
-        public IdentityUser User { get; set; } = null!;
+        public ApplicationUser User { get; set; } = null!;
 
         [Required]
         [ForeignKey(nameof(Seminar))]
         public int SeminarId { get; set; }
+
         public Seminar Seminar { get; set; } = null!;
 
     }

@@ -49,7 +49,7 @@ namespace MediationCorner.Infrastructure.Data.Models
 
         public Lecturer Lecturer { get; set; } = null!;
 
-        public ICollection<IdentityUser> Attendees { get; set; }
+        public ICollection<ApplicationUser> Attendees { get; set; }
 
     }
 }
