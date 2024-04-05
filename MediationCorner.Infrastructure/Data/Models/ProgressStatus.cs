@@ -8,6 +8,7 @@ namespace MediationCorner.Infrastructure.Data.Models
 {
     public class ProgressStatus
     {
+
       
     }
 }

@@ -1,14 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Net;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace MediationCorner.Infrastructure.Data.Models
 {
@@ -16,16 +9,19 @@ namespace MediationCorner.Infrastructure.Data.Models
     {
         public Seminar() 
         {
-            Attendees=new HashSet<IdentityUser>();
+            Attendees=new HashSet<ApplicationUser>();
         }
 
         [Key]
+        [Comment("Seminar identifier")]
         public int Id { get; set; }
 
-        [Required] 
+        [Required]
+        [Comment("Seminar Title")]
         public string Title { get; set; } = null!;
 
         [Required]
+        [Comment("Seminar Description")]
         public string Description { get; set; }= null!;
 
         [Comment("Date and time of the Seminar")]

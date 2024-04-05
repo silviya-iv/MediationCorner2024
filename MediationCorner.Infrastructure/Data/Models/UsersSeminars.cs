@@ -1,11 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+
 
 namespace MediationCorner.Infrastructure.Data.Models
 {
@@ -13,11 +10,13 @@ namespace MediationCorner.Infrastructure.Data.Models
     {
         [Required]
         [ForeignKey(nameof(User))]
-        public int UserId { get; set; }
+        [Comment("User identifier")]
+        public string UserId { get; set; } = null!;
         public ApplicationUser User { get; set; } = null!;
 
         [Required]
         [ForeignKey(nameof(Seminar))]
+        [Comment("Seminar identifier")]
         public int SeminarId { get; set; }
 
         public Seminar Seminar { get; set; } = null!;
