@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using static MediationCorner.Infrastructure.DataConstants.ValidationConstants;
 
 namespace MediationCorner.Infrastructure.Data.Models
 {
@@ -17,22 +17,25 @@ namespace MediationCorner.Infrastructure.Data.Models
         public int Id { get; set; }
 
         [Required]
-        [Comment("Seminar Title")]
+        [StringLength(SeminarTitleMaxLength)]
+        [Comment("Seminar title")]
         public string Title { get; set; } = null!;
 
         [Required]
-        [Comment("Seminar Description")]
+        [StringLength(SeminarDescriptionMaxLength)]
+        [Comment("Seminar description")]
         public string Description { get; set; }= null!;
 
-        [Comment("Date and time of the Seminar")]
+        [Comment("Date and time of the seminar")]
         public DateTime Date { get; set; }
 
         [Required]
+        [StringLength(SeminarLocationMaxLength)]
         [Comment("Location where the seminar will take place")]
-
         public string Location { get; set; } = null!;
 
         [Comment("Price for attending the seminar")]
+        [Column(TypeName ="decimal(6,2)")]
         public decimal Price { get; set; }
 
         [Comment("Deadline for sign up for the seminar")]

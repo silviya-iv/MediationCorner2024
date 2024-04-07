@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
-
+using static MediationCorner.Infrastructure.DataConstants.ValidationConstants;
 
 namespace MediationCorner.Infrastructure.Data.Models
 {
@@ -11,10 +11,12 @@ namespace MediationCorner.Infrastructure.Data.Models
         public int Id { get; set; }
 
         [Required]
+        [StringLength(LecturerNameMaxLength)]
         [Comment("Lecturer's name")]
         public string Name { get; set; } = null!;
 
         [Required]
+        [StringLength(LecturerSummaryMaxLength)]
         [Comment("Lecturer's summary")]
         public string Summary { get; set;} = null!;
 

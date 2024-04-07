@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using static MediationCorner.Infrastructure.DataConstants.ValidationConstants;
 
 
 namespace MediationCorner.Infrastructure.Data.Models

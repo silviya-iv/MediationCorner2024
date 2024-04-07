@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using static MediationCorner.Infrastructure.DataConstants.ValidationConstants;
 
 namespace MediationCorner.Infrastructure.Data.Models
 {
@@ -12,6 +12,7 @@ namespace MediationCorner.Infrastructure.Data.Models
         public int Id { get; set; }
 
         [Required]
+        [StringLength(InquiryAnswerMaxLength)]
         [Comment("Response to inquiry")]
         public string InquiryResponse { get; set; } = null!;
 

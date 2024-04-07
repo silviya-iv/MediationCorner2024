@@ -1,10 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static MediationCorner.Infrastructure.DataConstants.ValidationConstants;
 
 namespace MediationCorner.Infrastructure.Data.Models
 {
@@ -15,13 +11,16 @@ namespace MediationCorner.Infrastructure.Data.Models
         public int Id { get; set; }
 
         [Required]
+        [StringLength(InquiryTitleMaxLength)]
         [Comment("Inquiry title")]
         public string Title { get; set; } = null!;
 
         [Required]
+        [StringLength(InquiryDescriptionMaxLength)]
         [Comment("Inquiry description")]
         public string Description { get; set; }= null!;
 
+        [StringLength(InitiatorPhoneMaxLength)]
         [Comment("Inquiry initiator's phone number ")]
         public string? PhoneNumber { get; set; }
 
@@ -31,7 +30,8 @@ namespace MediationCorner.Infrastructure.Data.Models
         [Comment("Iquiry initiator")]
         public ApplicationUser Initiator { get; set; } = null!;
 
+        
         [Comment("Answer")]
-        public string? Answer { get; set; }
+        public Response? Response { get; set; }
     }
 }

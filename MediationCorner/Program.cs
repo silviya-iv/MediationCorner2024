@@ -1,4 +1,5 @@
 using MediationCorner.Data;
+using MediationCorner.Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
