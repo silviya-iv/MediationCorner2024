@@ -6,7 +6,7 @@ using static MediationCorner.Infrastructure.DataConstants.ValidationConstants;
 
 namespace MediationCorner.Infrastructure.Data.Models
 {
-    public class UsersSeminars
+    public class UserSeminar
     {
         [Required]
         [ForeignKey(nameof(User))]

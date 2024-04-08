@@ -4,7 +4,7 @@ using static MediationCorner.Infrastructure.DataConstants.ValidationConstants;
 
 namespace MediationCorner.Infrastructure.Data.Models
 {
-    public class FrequentlyAskedQuestions
+    public class FrequentlyAskedQuestion
     {
         [Key]
         [Comment("Question identifier")]

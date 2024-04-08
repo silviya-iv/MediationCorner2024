@@ -9,7 +9,7 @@ namespace MediationCorner.Infrastructure.Data.Models
     {
         public Seminar() 
         {
-            Attendees=new HashSet<ApplicationUser>();
+            UsersSeminars=new HashSet<UserSeminar>();
         }
 
         [Key]
@@ -48,7 +48,7 @@ namespace MediationCorner.Infrastructure.Data.Models
 
         public Lecturer Lecturer { get; set; } = null!;
 
-        public ICollection<ApplicationUser> Attendees { get; set; }
+        public ICollection<UserSeminar> UsersSeminars { get; set; }
 
     }
 }
