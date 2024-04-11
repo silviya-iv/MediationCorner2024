@@ -1,6 +1,7 @@
 ﻿using MediationCorner.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
 
 namespace MediationCorner.Infrastructure.Data
 {
@@ -22,6 +23,8 @@ namespace MediationCorner.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            base.OnModelCreating(builder);
+
             builder.Entity<UserSeminar>()
                 .HasKey(us => new { us.UserId, us.SeminarId });
 
