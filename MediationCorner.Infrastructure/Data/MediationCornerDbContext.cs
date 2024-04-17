@@ -13,7 +13,7 @@ namespace MediationCorner.Infrastructure.Data
         }
 
         public DbSet<Appointment> Appointments { get; set; } = null!;
-        public DbSet<FrequentlyAskedQuestion> FrequentlyAskedQuestions { get; set; } = null!;
+        public DbSet<Inquiry> FrequentlyAskedQuestions { get; set; } = null!;
         public DbSet<Inquiry> Inquiries { get; set; } = null!;
         public DbSet<Lecturer> Lecturers { get; set; } = null!;
         public DbSet<MediationRequest> MediationRequests { get; set; } = null!;
