@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace MediationCorner.Infrastructure.Data.Configurations
 {
-    internal class FAQConfiguration : IEntityTypeConfiguration<Inquiry>
+    internal class FAQConfiguration : IEntityTypeConfiguration<FrequentlyAskedQuestion>
     {
-        public void Configure(EntityTypeBuilder<Inquiry> builder)
+        public void Configure(EntityTypeBuilder<FrequentlyAskedQuestion> builder)
         {
             var data = new SeedData();
-
+            builder.HasData(new FrequentlyAskedQuestion[] { data.Purpose, data.Pros, data.HowToUse });
         }
     }
 }

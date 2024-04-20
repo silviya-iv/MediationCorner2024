@@ -13,7 +13,10 @@ namespace MediationCorner.Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Seminar> builder)
         {
-            throw new NotImplementedException();
+            var data = new SeedData();
+
+            builder.HasData(new Seminar[] { data.GDPR, data.Inheritance });
+
         }
     }
 }

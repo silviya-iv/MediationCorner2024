@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using static MediationCorner.Core.Constants.AdminConstants;
 
-namespace MediationCorner.Extensions
-{
+namespace Microsoft.AspNetCore.Builder
+{ 
     public static class ApplicationBuilderExtensions
     {
 

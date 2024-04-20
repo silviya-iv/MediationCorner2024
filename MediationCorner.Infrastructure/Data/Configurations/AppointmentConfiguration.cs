@@ -13,7 +13,9 @@ namespace MediationCorner.Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Appointment> builder)
         {
-            throw new NotImplementedException();
+            var data = new SeedData();
+
+            builder.HasData(new Appointment[] { data.DivorceConsultation, data.MediationConsultation });
         }
     }
 }
