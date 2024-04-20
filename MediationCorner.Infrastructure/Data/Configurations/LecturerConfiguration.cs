@@ -13,7 +13,10 @@ namespace MediationCorner.Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Lecturer> builder)
         {
-            throw new NotImplementedException();
+            var data = new SeedData();
+
+            builder.HasData( data.Lecturer );
+
         }
     }
 }

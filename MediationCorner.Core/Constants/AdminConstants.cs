@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace MediationCorner.Core.Constants
 {
-    internal class AdminConstants
+    public class AdminConstants
     {
+        
+            public const string AdminRole = "Administrator";
+            public const string AdminAreaName = "Admin";
+            public const string AdminEmail = "mediation.law.corner@gmail.com";
+            //public const string UsersCacheKey = "UsersCacheKey";
+        
     }
 }

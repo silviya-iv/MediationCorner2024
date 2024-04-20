@@ -10,10 +10,16 @@ namespace MediationCorner.Infrastructure.Data.Configurations
 {
     internal class SeedData
     {
-        public IdentityUserClaim<string> ClientUserClaim { get; set; }
+        public IdentityUserClaim<string> ClientUserOneClaim { get; set; }
+
+        public IdentityUserClaim<string> ClientUserTwoClaim { get; set; }
+
         public IdentityUserClaim<string> AdminUserClaim { get; set; }
 
-        public ApplicationUser ClientUser { get; set; }
+        public ApplicationUser ClientUserOne { get; set; }
+
+        public ApplicationUser ClientUserTwo { get; set; }
+
         public ApplicationUser AdminUser { get; set; }
         
         public Appointment DivorceConsultation { get; set; }
@@ -48,7 +54,17 @@ namespace MediationCorner.Infrastructure.Data.Configurations
 
         public Seminar GDPR { get; set; }
 
+        public UserSeminar UserOneSeminarGDPR { get; set; }
 
-        public SeedData() { }
+        public UserSeminar UserTwoSeminarGDPR { get; set; }
+
+        public UserSeminar UserOneSeminarInheritance { get; set; }
+
+        public UserSeminar UserTwoSeminarInheritance { get; set; }
+
+        public SeedData() 
+        { 
+        
+        }
     }
 }
