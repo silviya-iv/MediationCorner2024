@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using static MediationCorner.Infrastructure.DataConstants.ValidationConstants;
 
 namespace MediationCorner.Infrastructure.Data.Models
@@ -17,8 +18,13 @@ namespace MediationCorner.Infrastructure.Data.Models
         public int Id { get; set; }
 
         [Required]
+        [ForeignKey(nameof(FirstParty))]
         [Comment("Initiator of the mediation request")]
+        public string FirstPartyId { get; set; } = null!;
+           
+        
         public ApplicationUser FirstParty { get; set; } = null!;
+
 
         [Required]
         [StringLength(InitiatorPhoneMaxLength)]

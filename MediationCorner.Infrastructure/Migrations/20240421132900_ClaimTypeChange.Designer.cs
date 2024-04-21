@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace MediationCorner.Data.Migrations
+namespace MediationCorner.Infrastructure.Migrations
 {
     [DbContext(typeof(MediationCornerDbContext))]
-    [Migration("20240411204305_Initial")]
-    partial class Initial
+    [Migration("20240421132900_ClaimTypeChange")]
+    partial class ClaimTypeChange
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -97,6 +97,62 @@ namespace MediationCorner.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "dea12856-c198-4129-b3f3-b893d8395082",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "31d7dc67-14c4-4e3b-8dee-4d4e7a9b027b",
+                            Email = "client1@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Иван",
+                            LastName = "Иванов",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "CLIENT1@GMAIL.COM",
+                            NormalizedUserName = "CLIENT1@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEO07JTgHKr5VXsDXEl/As+lU5UOHFVAGPVUfTlvF0DeDeucuVHFub5tGXnmy3wa87g==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "1bf8a6c6-6cc9-495a-9d10-d486a6188653",
+                            TwoFactorEnabled = false,
+                            UserName = "client1@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "215b1ac8-ff39-4609-9fed-b270e466014e",
+                            Email = "client2@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Петър",
+                            LastName = "Петров",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "CLIENT2@GMAIL.COM",
+                            NormalizedUserName = "CLIENT2@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMNjdf/ITUHL5ZU7scDulgiwP41U7KEbZLjwEuoxSLEyUqjV9MMuD/F+/J79RL4CVQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "a07f4449-f189-4927-bdee-c1af3964bc5e",
+                            TwoFactorEnabled = false,
+                            UserName = "client2@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "e43ce836-997d-4927-ac59-74e8c41bbfd3",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "1b516ba9-004f-49ee-8cb6-e18fbcae29cb",
+                            Email = "mediation.law.corner@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Вероника",
+                            LastName = "Иванова",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "MEDIATION.LAW.CORNER@GMAIL.COM",
+                            NormalizedUserName = "MEDIATION.LAW.CORNER@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJLsEGvVmuKWMZ1h3WXKmLmIxtfF6+DDSgn/sMyxBH8alNISZ4CB10uvU08o7q09mQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "42decd72-d484-45ad-b5d6-d018179f0aa3",
+                            TwoFactorEnabled = false,
+                            UserName = "mediation.law.corner@gmail.com"
+                        });
                 });
 
             modelBuilder.Entity("MediationCorner.Infrastructure.Data.Models.Appointment", b =>
@@ -110,7 +166,8 @@ namespace MediationCorner.Data.Migrations
 
                     b.Property<string>("ClientId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(450)")
+                        .HasComment("Client");
 
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime2")
@@ -134,6 +191,24 @@ namespace MediationCorner.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("Appointments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 2,
+                            ClientId = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
+                            EndTime = new DateTime(2024, 4, 25, 14, 0, 0, 0, DateTimeKind.Unspecified),
+                            ShortDescription = "Консултация от относно развод",
+                            StartTime = new DateTime(2024, 4, 30, 13, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 1,
+                            ClientId = "dea12856-c198-4129-b3f3-b893d8395082",
+                            EndTime = new DateTime(2024, 4, 30, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            ShortDescription = "Консултация относно посредничство",
+                            StartTime = new DateTime(2024, 4, 30, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("MediationCorner.Infrastructure.Data.Models.FrequentlyAskedQuestion", b =>
@@ -160,6 +235,26 @@ namespace MediationCorner.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("FrequentlyAskedQuestions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Answer = "Целта на нашата платформа за посредничество е да осигурим ефективен и бърз начин за решаване на спорове и конфликти. Чрез нашата услуга можете да намерите квалифицирани посредници, да инициирате процеса на посредничество и да управлявате вашия случай онлайн.",
+                            Question = "Каква е целта на тази платформа за посредничество?"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Answer = "Първо, регистрирате профил и предоставяте информация за вашия спор. След това, системата ще ви предложи квалифицирани посредници, които отговарят на вашите нужди. След като изберете посредник, можете да започнете процеса на посредничество, който включва комуникация между страните и търсене на решение на спора.",
+                            Question = "Как работи процесът на посредничество чрез тази платформа?"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Answer = "Посредничеството предлага множество предимства, включително по-бързо и по-ефективно решаване на спорове, по-ниски разходи, по-добро запазване на отношенията между страните и по-голяма гъвкавост в процеса на вземане на решения.",
+                            Question = "Какви са предимствата на посредничеството пред съдебния процес?"
+                        });
                 });
 
             modelBuilder.Entity("MediationCorner.Infrastructure.Data.Models.Inquiry", b =>
@@ -182,7 +277,9 @@ namespace MediationCorner.Data.Migrations
                         .HasComment("Inquiry description");
 
                     b.Property<string>("InitiatorId")
-                        .HasColumnType("nvarchar(450)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)")
+                        .HasComment("Iquiry initiator");
 
                     b.Property<string>("PhoneNumber")
                         .HasMaxLength(15)
@@ -200,6 +297,26 @@ namespace MediationCorner.Data.Migrations
                     b.HasIndex("InitiatorId");
 
                     b.ToTable("Inquiries");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Date = new DateTime(2024, 4, 21, 16, 28, 58, 458, DateTimeKind.Local).AddTicks(5169),
+                            Description = "Здравейте, искам да се консултирам относно наемния договор, който подписах с наемодателя си за жилище. Имам няколко въпроса относно правата и задълженията ми като наемател и какви са моите права, ако се появи спор между мен и наемодателя. Благодаря ви предварително за съдействието.",
+                            InitiatorId = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
+                            PhoneNumber = "00359887654321",
+                            Title = "Въпроси относно наемния договор за жилище"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Date = new DateTime(2024, 4, 21, 16, 28, 58, 458, DateTimeKind.Local).AddTicks(5219),
+                            Description = "важаеми, имаме няколко въпроса относно прилагането на трудовия закон в нашата фирма. Искаме консултация относно правилата за работно време, отпуските, както и процедурите за уволнение и компенсации. Моля, свържете се с нас, за да уговорим среща за консултация. Благодарим ви.",
+                            InitiatorId = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
+                            PhoneNumber = "00359887654321",
+                            Title = "Въпрос относно прилагането на трудовия закон"
+                        });
                 });
 
             modelBuilder.Entity("MediationCorner.Infrastructure.Data.Models.Lecturer", b =>
@@ -230,6 +347,14 @@ namespace MediationCorner.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Lecturers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Доц. д-р Стефан Иванов",
+                            Summary = "Доц. д-р Стефан Иванов е известен правен учен с богат опит в преподаването и научните изследвания. Той притежава докторска степен по право от Софийски университет и се специализира в областта на международното право, правата на човека и сравнителните правни системи. Доц. Иванов е автор на множество статии в престижни правни списания и е представял своите изследвания на международни конференции. Той е бил гост-лектор в реномирани университети в Европа и е бил поканен да проведе ключови речи на различни семинари с правна тематика. Експертизата и страстта на доц. Иванов към правното образование го правят неоценим ресурс за студенти и професионалисти."
+                        });
                 });
 
             modelBuilder.Entity("MediationCorner.Infrastructure.Data.Models.MediationRequest", b =>
@@ -243,7 +368,8 @@ namespace MediationCorner.Data.Migrations
 
                     b.Property<string>("FirstPartyId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(450)")
+                        .HasComment("Initiator of the mediation request");
 
                     b.Property<string>("SecondPartyName")
                         .IsRequired()
@@ -268,6 +394,77 @@ namespace MediationCorner.Data.Migrations
                     b.HasIndex("FirstPartyId");
 
                     b.ToTable("MediationRequests");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            FirstPartyId = "dea12856-c198-4129-b3f3-b893d8395082",
+                            SecondPartyName = "Георги Георгиев",
+                            ShortDescription = "Имаме спор със съседите за границите на имота.",
+                            firstPartyPhoneNumber = "00359883456789"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            FirstPartyId = "dea12856-c198-4129-b3f3-b893d8395082",
+                            SecondPartyName = "Мария Илиева",
+                            ShortDescription = "Необходима е помощ за разрешаване на договорен спор с доставчик.",
+                            firstPartyPhoneNumber = "00359883456789"
+                        });
+                });
+
+            modelBuilder.Entity("MediationCorner.Infrastructure.Data.Models.ProgressStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasComment("Current status identifier");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("CurrrentStatus")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasComment("Current status of the mediation request");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2")
+                        .HasComment("Date of the status");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
+                        .HasComment("Current status description");
+
+                    b.Property<int>("MediationRequestId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MediationRequestId");
+
+                    b.ToTable("ProgressStatuses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CurrrentStatus = "В процес на посредничество",
+                            Date = new DateTime(2024, 4, 21, 16, 28, 58, 650, DateTimeKind.Local).AddTicks(7798),
+                            Description = "Насрочена е дата за среща с двете страни",
+                            MediationRequestId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CurrrentStatus = "Изчакване",
+                            Date = new DateTime(2024, 4, 21, 16, 28, 58, 650, DateTimeKind.Local).AddTicks(7803),
+                            Description = "Изчакваме обратна връзка от втората страна по конфликта",
+                            MediationRequestId = 2
+                        });
                 });
 
             modelBuilder.Entity("MediationCorner.Infrastructure.Data.Models.Response", b =>
@@ -299,6 +496,22 @@ namespace MediationCorner.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("Responses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DateOfResponse = new DateTime(2024, 4, 21, 16, 28, 58, 699, DateTimeKind.Local).AddTicks(3323),
+                            InquiryId = 1,
+                            InquiryResponse = "Като наемател имате право да използвате наетото жилище в съответствие с условията на договора за наем.Имате право да живеете в жилище, което е подходящо за живеене и отговаря на минималните здравни и санитарни изисквания. Имате право на мирно ползване на жилището и на неприкосновеност на вашето лично пространство.На наемодателя му се изисква да осигури сигурно жилище и да извършва необходимите ремонти, за да запази жилището в добро състояние. Ако има спор между вас и наемодателя, имате право да потърсите правна помощ и да обжалвате решенията на компетентните органи или съдилища. Можете да ползвате процедури за алтернативно разрешаване на спорове, като например медиация или арбитраж, за да решите спора извън съдебен път."
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DateOfResponse = new DateTime(2024, 4, 21, 16, 28, 58, 699, DateTimeKind.Local).AddTicks(3330),
+                            InquiryId = 2,
+                            InquiryResponse = "Здравейте, можете да запазите час за консултация през формата в сайта, като влезете в меню Запази час за консултация."
+                        });
                 });
 
             modelBuilder.Entity("MediationCorner.Infrastructure.Data.Models.Seminar", b =>
@@ -312,7 +525,7 @@ namespace MediationCorner.Data.Migrations
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2")
-                        .HasComment("Date and time of the seminar");
+                        .HasComment("Date of the seminar");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -349,6 +562,30 @@ namespace MediationCorner.Data.Migrations
                     b.HasIndex("LecturerId");
 
                     b.ToTable("Seminars");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 2,
+                            Date = new DateTime(2024, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Описание: Семинарът ще представи основните правила на Общия регламент за защита на данните (GDPR) и техния принос към защитата на личните данни в бизнес средата. Ще се разгледат и случаи от практиката и съответните правни последици за организациите. Събитето ще се проведе от 09:00 и ще бъде с продължи до 12:30",
+                            LecturerId = 1,
+                            Location = "гр. Благоевград, Американски Университет, Зала 3",
+                            Price = 150.00m,
+                            RegistrationDeadline = new DateTime(2024, 10, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Приложение на GDPR в бизнеса: Законодателство и регулации  "
+                        },
+                        new
+                        {
+                            Id = 1,
+                            Date = new DateTime(2024, 10, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Описание: Семинарът ще обхване теми като правата на наследниците, разпределение на наследството, процедурите за наследствено дело и правните аспекти при разрешаване на спорове относно наследството. Събитето ще се проведе от 09:00 и ще бъде с продължи до 12:30",
+                            LecturerId = 1,
+                            Location = "гр. Благоевград, Американски Университет, Зала 3",
+                            Price = 150.00m,
+                            RegistrationDeadline = new DateTime(2024, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Наследствено право и процесуални аспекти"
+                        });
                 });
 
             modelBuilder.Entity("MediationCorner.Infrastructure.Data.Models.UserSeminar", b =>
@@ -366,6 +603,28 @@ namespace MediationCorner.Data.Migrations
                     b.HasIndex("SeminarId");
 
                     b.ToTable("UsersSeminars");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "dea12856-c198-4129-b3f3-b893d8395082",
+                            SeminarId = 2
+                        },
+                        new
+                        {
+                            UserId = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
+                            SeminarId = 2
+                        },
+                        new
+                        {
+                            UserId = "dea12856-c198-4129-b3f3-b893d8395082",
+                            SeminarId = 1
+                        },
+                        new
+                        {
+                            UserId = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
+                            SeminarId = 1
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -443,6 +702,29 @@ namespace MediationCorner.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("AspNetUserClaims", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ClaimType = "FirstName",
+                            ClaimValue = "Иван",
+                            UserId = "dea12856-c198-4129-b3f3-b893d8395082"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ClaimType = "FirstName",
+                            ClaimValue = "Петър",
+                            UserId = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ClaimType = "FirstName",
+                            ClaimValue = "Вероника",
+                            UserId = "e43ce836-997d-4927-ac59-74e8c41bbfd3"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -520,7 +802,9 @@ namespace MediationCorner.Data.Migrations
                 {
                     b.HasOne("MediationCorner.Infrastructure.Data.Models.ApplicationUser", "Initiator")
                         .WithMany()
-                        .HasForeignKey("InitiatorId");
+                        .HasForeignKey("InitiatorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Initiator");
                 });
@@ -534,6 +818,17 @@ namespace MediationCorner.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("FirstParty");
+                });
+
+            modelBuilder.Entity("MediationCorner.Infrastructure.Data.Models.ProgressStatus", b =>
+                {
+                    b.HasOne("MediationCorner.Infrastructure.Data.Models.MediationRequest", "MediationRequest")
+                        .WithMany()
+                        .HasForeignKey("MediationRequestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("MediationRequest");
                 });
 
             modelBuilder.Entity("MediationCorner.Infrastructure.Data.Models.Response", b =>

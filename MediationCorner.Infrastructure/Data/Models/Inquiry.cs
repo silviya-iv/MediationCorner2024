@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using static MediationCorner.Infrastructure.DataConstants.ValidationConstants;
 
 namespace MediationCorner.Infrastructure.Data.Models
@@ -27,7 +28,13 @@ namespace MediationCorner.Infrastructure.Data.Models
         [Comment("Date of the iquiry initiation")]
         public DateTime Date { get; set; }= DateTime.Now;
 
+
+        [Required]
+        [ForeignKey(nameof(Initiator))]
         [Comment("Iquiry initiator")]
+        public string InitiatorId { get; set; } = null!;
+
+       
         public ApplicationUser Initiator { get; set; } = null!;
 
         

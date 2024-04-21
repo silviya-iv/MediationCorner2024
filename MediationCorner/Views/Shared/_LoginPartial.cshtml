@@ -1,13 +1,25 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using MediationCorner.Infrastructure.Data.Models;
+@using System.Security.Claims;
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+
+@{
+    string userName = string.Empty;
+
+    if (SignInManager.IsSignedIn(User))
+    {
+        userName = User.FindFirstValue(MediationCorner.Infrastructure.DataConstants.CustomClaims.UserNameClaim) ?? string.Empty;
+    }
+}
+
+
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Здравей, @userName</a>
     </li>
     <li class="nav-item">
         <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">

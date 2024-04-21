@@ -26,7 +26,7 @@ namespace MediationCorner.Infrastructure.Data.Models
         [Comment("Seminar description")]
         public string Description { get; set; }= null!;
 
-        [Comment("Date and time of the seminar")]
+        [Comment("Date of the seminar")]
         public DateTime Date { get; set; }
 
         [Required]

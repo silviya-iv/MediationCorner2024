@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using static MediationCorner.Infrastructure.DataConstants.CustomClaims;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -116,7 +117,7 @@ namespace MediationCorner.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-                    await _userManager.AddClaimAsync(user, new Claim("FirstName", user.FirstName));
+                    await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim(UserNameClaim, user.FirstName));
                     _logger.LogInformation("User created a new account with password.");
 
 

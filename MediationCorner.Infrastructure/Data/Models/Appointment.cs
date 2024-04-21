@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using static MediationCorner.Infrastructure.DataConstants.ValidationConstants;
 
 namespace MediationCorner.Infrastructure.Data.Models
@@ -17,7 +18,10 @@ namespace MediationCorner.Infrastructure.Data.Models
         public string ShortDescription { get; set; } = null!;
 
         [Required]
+        [ForeignKey(nameof(Client))]
         [Comment("Client")]
+        public string ClientId { get; set; } = null!;
+
         public ApplicationUser Client { get; set;} = null!;
 
         [Comment("Starting time of the appointment")]
