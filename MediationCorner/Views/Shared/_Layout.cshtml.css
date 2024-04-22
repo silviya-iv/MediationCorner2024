@@ -11,8 +11,10 @@ a.navbar-brand {
 }
 
 a {
-  color: #0077cc;
+    color: #0077cc;
+    
 }
+
 
 .btn-primary {
   color: #fff;
@@ -38,14 +40,19 @@ a {
 }
 
 button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
+
+}
+ul {
+    list-style-type: none;
 }
 
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+  
+    line-height: inherit;
 }
+
+

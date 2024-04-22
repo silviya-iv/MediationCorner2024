@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace MediationCorner.Controllers
+namespace MediationCorner.Areas.Admin.Controllers
+{ 
+    
+    public class HomeController : AdminBaseController
 {
-    [AllowAnonymous]
-    public class HomeController : BaseController
-    {
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)

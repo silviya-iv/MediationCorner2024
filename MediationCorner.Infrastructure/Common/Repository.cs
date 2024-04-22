@@ -1,41 +1,57 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediationCorner.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace MediationCorner.Infrastructure.Common
 {
     public class Repository : IRepository
     {
-        public Task AddAsync<T>(T entity) where T : class
+        private readonly DbContext context;
+
+        public Repository(MediationCornerDbContext _context)
         {
-            throw new NotImplementedException();
+            context = _context;
+        }
+
+        private DbSet<T> DbSet<T>() where T : class
+        {
+            return context.Set<T>();
         }
 
         public IQueryable<T> All<T>() where T : class
         {
-            throw new NotImplementedException();
+            return DbSet<T>();
         }
 
         public IQueryable<T> AllReadOnly<T>() where T : class
         {
-            throw new NotImplementedException();
+            return DbSet<T>()
+                .AsNoTracking();
         }
 
-        public Task DeleteAsync<T>(object id) where T : class
+        public async Task AddAsync<T>(T entity) where T : class
         {
-            throw new NotImplementedException();
+            await DbSet<T>().AddAsync(entity);
         }
 
-        public Task<T?> GetByIdAsync<T>(object id) where T : class
+        public async Task<int> SaveChangesAsync()
         {
-            throw new NotImplementedException();
+            return await context.SaveChangesAsync();
         }
 
-        public Task<int> SaveChangesAsync()
+        public async Task<T?> GetByIdAsync<T>(object id) where T : class
         {
-            throw new NotImplementedException();
+            return await DbSet<T>().FindAsync(id);
+        }
+
+        public async Task DeleteAsync<T>(object id) where T : class
+        {
+            T? entity = await GetByIdAsync<T>(id);
+
+            if (entity != null)
+            {
+                DbSet<T>().Remove(entity);
+            }
         }
     }
-}
+    }
