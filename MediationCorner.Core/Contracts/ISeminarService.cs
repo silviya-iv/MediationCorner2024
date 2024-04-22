@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MediationCorner.Core
+namespace MediationCorner.Core.Contracts
 {
-    internal class Models
+    internal class ISeminarService
     {
     }
 }
