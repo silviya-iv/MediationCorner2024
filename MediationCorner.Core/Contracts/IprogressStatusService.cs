@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MediationCorner.Core.Contracts
 {
-    public interface IprogressStatusService
+    public interface IProgressStatusService
     {
     }
 }

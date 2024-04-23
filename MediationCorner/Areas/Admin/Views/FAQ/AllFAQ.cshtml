@@ -3,6 +3,10 @@
     ViewBag.Title = "FAQ";
 }
 
+<p>
+    <a asp-controller="FAQ" asp-action="Add" class="btn btn-primary btn-lg" role="button">Добави</a>
+
+</p>
 
 <h2>@ViewBag.Title</h2>
 
@@ -12,7 +16,7 @@
         <li>
             <p> @item.Question</p>
             <p>@item.Answer</p>
-        </li> 
+        </li>
     }
 </ul>
 

@@ -1,4 +1,4 @@
-﻿using MediationCorner.Core.Models;
+﻿using MediationCorner.Core.Models.FAQ;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +12,7 @@ namespace MediationCorner.Core.Contracts
     {
         Task CreateAsync(FrequentlyAskedQuestionFormModel model);
 
-        Task<FrequentlyAskedQuestionModel> AllAsync(
-            string? searchTerm = null,
-            int currentPage = 1,
-            int FAQPerPage = 1);
+        Task<IEnumerable<FrequentlyAskedQuestionModel>> AllAsync();
 
         Task EditAsync(int FAQId, FrequentlyAskedQuestionFormModel model);
 

@@ -1,4 +1,6 @@
-﻿using MediationCorner.Core.Models;
+﻿using MediationCorner.Core.Contracts;
+using MediationCorner.Core.Models;
+using MediationCorner.Core.Services;
 using MediationCorner.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,28 +9,33 @@ namespace MediationCorner.Controllers
     public class FAQController : BaseController
     {
 
-        private readonly MediationCornerDbContext _context;
+        private readonly IFAQService FAQService;
 
-        public FAQController(MediationCornerDbContext context)
+        public FAQController(IFAQService _FAQService)
         {
-            _context = context;
+            FAQService = _FAQService;
         }
-
-        // Action method for viewing all FAQs
-        public IActionResult All()
+        private const int PageSize = 2;
+       
+        public async Task<IActionResult> All(int page = 1)
         {
-            var faqs = _context.FrequentlyAskedQuestions.Select(f=>new FrequentlyAskedQuestionModel { 
-            Question=f.Question,
-            Answer=f.Answer})
-                .ToList();
-                
-            return View(faqs);
+            var allFAQ = await FAQService.AllAsync();
+            int totalItems = allFAQ.Count();
+            int totalPages = (int)Math.Ceiling((double)totalItems / PageSize);
+
+       
+        var model = allFAQ.Skip((page - 1) * PageSize).Take(PageSize).ToList();
+
+        
+            
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = totalPages;
+
+            return View(model);
         }
-
-        //public IActionResult All()
-        //{
-
-        //    return View();
-        //}
     }
 }
+         
+
+       
+    

@@ -3,6 +3,8 @@ using MediationCorner.Infrastructure.Data.Models;
 using MediationCorner.Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using MediationCorner.Core.Contracts;
+using MediationCorner.Core.Services;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -10,12 +12,14 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-            //services.AddScoped<IHouseService, HouseService>();
-            //services.AddScoped<IAgentService, AgentService>();
-            //services.AddScoped<IStatisticService, StatisticService>();
-            //services.AddScoped<IUserService, UserService>();
-            //services.AddScoped<IRentService, RentService>();
-
+            services.AddScoped<IAppointmentService, AppointmentService>();
+            services.AddScoped<IFAQService, FAQService>();
+            services.AddScoped<IInquiryService, InquiryService>();
+            services.AddScoped<ILecturerService, LecturerService>();
+            services.AddScoped<IMediationRequestService, MediationRequestService>();
+            services.AddScoped<IProgressStatusService, ProgressStatusService>();
+            services.AddScoped<IResponceService, ResponceService>();
+            services.AddScoped<ISeminarService, SeminarService>();
             return services;
         }
 
@@ -38,7 +42,6 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddDefaultIdentity<ApplicationUser>(options =>
                 {
                     options.User.RequireUniqueEmail = true;
-                    //options.SignIn.RequireConfirmedAccount = false;
                     options.Password.RequireNonAlphanumeric = true;
                     options.Password.RequireDigit = true;
                     options.Password.RequireLowercase = true;

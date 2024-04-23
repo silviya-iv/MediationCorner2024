@@ -12,6 +12,7 @@ builder.Services.AddApplicationIdentity(builder.Configuration);
 
 builder.Services.AddControllersWithViews(options =>
 {
+    
     options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
     options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
 });
@@ -44,18 +45,18 @@ app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
 {
-    //endpoints.MapControllerRoute(
-    //    name: "House Details",
-    //    pattern: "/House/Details/{id}/{information}",
-    //    defaults: new { Controller = "House", Action = "Details" }
-    //);
+   
+    endpoints.MapControllerRoute(
+            name: "admin",
+            pattern: "{area:exists}/{controller=FAQ}/{action=ALLFAQ}/{id?}"
+        );
 
     endpoints.MapControllerRoute(
-            name: "areas",
-            pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-    );
+             name: "default",
+             pattern: "{controller=Home}/{action=Index}/{id?}"
+     );
 
-    endpoints.MapDefaultControllerRoute();
+   // endpoints.MapDefaultControllerRoute();
     endpoints.MapRazorPages();
 });
 
