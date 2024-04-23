@@ -1,5 +1,52 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewBag.Title = "Правни услуги";
 }
+
+
+
+<div class="container mt-5">
+    <h2> <strong>@ViewBag.Title </strong></h2>
+
+    <div id="description" class="mt-4" style="display: none;">
+        <h4 id="serviceName"></h4>
+        <p id="serviceDescription"></p>
+    </div>
+</div>
+    <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action" onclick="showDescription('Гражданско право')">Гражданско право</a>
+        <a href="#" class="list-group-item list-group-item-action" onclick="showDescription('Наказателно право')"> Наказателно право</a>
+        <a href="#" class="list-group-item list-group-item-action" onclick="showDescription('Търговско право')"> Търговско право</a>
+        <a href="#" class="list-group-item list-group-item-action" onclick="showDescription('Фамилно право')"> Фамилно право</a>
+        <a href="#" class="list-group-item list-group-item-action" onclick="showDescription('Имиграционно право')"> Имиграционно право</a>
+        <a href="#" class="list-group-item list-group-item-action" onclick="showDescription('Интелектуална право')"> Интелектуална право</a>
+        <a href="#" class="list-group-item list-group-item-action" onclick="showDescription('Имотно право')"> Имотно право</a>
+        <a href="#" class="list-group-item list-group-item-action" onclick="showDescription('Корпоративно право')"> Корпоративно право</a>
+        <a href="#" class="list-group-item list-group-item-action" onclick="showDescription('Финансово право')"> Финансово право</a>
+    <a href="#" class="list-group-item list-group-item-action" onclick="showDescription('Административно право')">Административно право</a>
+    </div>
+   
+   
+
+
+<script>
+    function showDescription(serviceName) {
+        var descriptions = {
+            'Гражданско право': 'Предлага правни услуги, свързани с гражданските права и отношения...',
+            ' Наказателно право': ' Осигурява правни услуги, свързани с обвинения за престъпления, защита на правата на подсъдими и правната помощ по наказателни дела...',
+            ' Търговско право': ' Предоставя правни консултации и представителство по въпроси, свързани с търговски договори, фирмени сделки и корпоративни спорове...',
+            ' Имиграционно право': ' Специализира във визи, разрешителни за пребиваване, гражданство и други въпроси, свързани с миграцията и пребиваването в страната...',
+            'Фамилно право': ' Осигурява правни услуги, свързани с брачни и разводни дела, определение на родителско право и регулиране на семейни отношения...',
+            ' Интелектуална право': ' Предоставя правна защита за интелектуалната собственост, включително авторски права, патенти, търговски марки и защита на данни..',
+            ' Имотно право': 'Специализира в предоставянето на правни услуги, свързани с купуване, продаване и наемане на имоти, както и с имотни спорове и проблеми...',
+            ' Корпоративно право': ' Обслужва корпоративни клиенти, предоставяйки правни консултации по въпроси, свързани със създаването, управлението и промените във вече съществуващите предприятия...',
+            ' Финансово право': ' Специализира във въпроси, свързани с банково право, инвестиции, кредити, застраховки и други финансови транзакции...',
+            ' Административно право': ' Осигурява правни услуги, свързани с действията и решенията на административни органи, административни спорове и обжалване на административни актове...',
+        };
+
+        document.getElementById("serviceName").innerText = serviceName;
+        document.getElementById("serviceDescription").innerText = descriptions[serviceName];
+        document.getElementById("description").style.display = "block";
+    }
+</script>
+
+

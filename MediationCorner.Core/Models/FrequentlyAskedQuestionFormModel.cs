@@ -1,6 +1,7 @@
 ﻿namespace MediationCorner.Core.Models
 {
-    internal class FrequentlyAskedQuestionModel
+    public class FrequentlyAskedQuestionFormModel
     {
+
     }
 }

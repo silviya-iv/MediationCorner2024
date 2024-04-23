@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MediationCorner.Core.Contracts
 {
-    internal interface Interface1
+    public interface IInquiryService
     {
     }
 }

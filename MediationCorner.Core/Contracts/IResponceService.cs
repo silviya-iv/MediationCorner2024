@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MediationCorner.Core.Contracts
 {
-    internal class IResponceService
+    public interface IResponceService
     {
     }
 }
