@@ -1,6 +1,10 @@
 ﻿using MediationCorner.Controllers;
 using MediationCorner.Core.Contracts;
+using MediationCorner.Core.Models.FAQ;
+using MediationCorner.Infrastructure.Common;
 using Microsoft.AspNetCore.Mvc;
+using System.Drawing.Printing;
+using System.Security.Claims;
 
 namespace MediationCorner.Areas.Admin.Controllers
 {
@@ -13,15 +17,14 @@ namespace MediationCorner.Areas.Admin.Controllers
         {
             FAQService = _FAQService;
         }
+
         private const int PageSize = 2;
 
-        public async Task<IActionResult> AllFAQ(int page = 1)
+        public async Task<IActionResult> All(int page = 1)
         {
             var allFAQ = await FAQService.AllAsync();
             int totalItems = allFAQ.Count();
             int totalPages = (int)Math.Ceiling((double)totalItems / PageSize);
-
-
             var model = allFAQ.Skip((page - 1) * PageSize).Take(PageSize).ToList();
 
 
@@ -32,9 +35,71 @@ namespace MediationCorner.Areas.Admin.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> Add()
+       
+
+        [HttpGet]
+        public  IActionResult Add()
         {
-            return View();
+            var model = new FrequentlyAskedQuestionFormModel();
+
+            return View(model);
         }
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> Add(FrequentlyAskedQuestionFormModel model)
+        {
+            if (ModelState.IsValid == false)
+            {
+                return View(model);
+            }
+            await FAQService.CreateAsync(model);
+
+            return RedirectToAction("All", "FAQ");
+         }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (await FAQService.ExistsAsync(id) == false)
+            {
+                return BadRequest();
+            }
+
+            if (User.IsAdmin() == false)
+            {
+                return Unauthorized();
+            }
+
+            var faq = await FAQService.FaqById(id);
+
+            var model = new FrequentlyAskedQuestionModel()
+            {
+                Question = faq.Question,
+                Answer = faq.Answer,
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(FrequentlyAskedQuestionModel model)
+        {
+            if (await FAQService.ExistsAsync(model.Id) == false)
+            {
+                return BadRequest();
+            }
+
+            if (User.IsAdmin() == false)
+            {
+                return Unauthorized();
+            }
+
+            await FAQService.DeleteAsync(model.Id);
+
+            return RedirectToAction("All", "FAQ");
+        }
+
     }
 }

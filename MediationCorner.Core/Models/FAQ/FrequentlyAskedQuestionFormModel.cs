@@ -7,14 +7,14 @@ namespace MediationCorner.Core.Models.FAQ
     public class FrequentlyAskedQuestionFormModel
     {
         [Required(ErrorMessage = RequiredMessage)]
-        [StringLength(FAQMinLength,
-        MinimumLength = FAQMaxLength,
+        [StringLength(FAQMaxLength,
+        MinimumLength = FAQMinLength,
         ErrorMessage = LengthMessage)]
         [Display(Name = "Въпрос")]
         public string Question { get; set; } = null!;
 
         [Required(ErrorMessage = RequiredMessage)]
-        [StringLength(FAQMinLength,
+        [StringLength(FAQResponseMaxLength,
         MinimumLength = FAQResponseMinLength,
         ErrorMessage = LengthMessage)]
         [Display(Name = "Отговор")]

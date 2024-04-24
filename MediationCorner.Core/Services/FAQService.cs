@@ -17,9 +17,10 @@ namespace MediationCorner.Core.Services
         }
         public async Task<IEnumerable<FrequentlyAskedQuestionModel>> AllAsync()
         {
-            return await repository.AllReadOnly<FrequentlyAskedQuestion>()
+            return await repository.All<FrequentlyAskedQuestion>()
                 .Select(f => new FrequentlyAskedQuestionModel()
                 {
+                    Id=f.Id,
                     Question = f.Question,
                     Answer = f.Answer
                 })
@@ -27,21 +28,55 @@ namespace MediationCorner.Core.Services
                 .ToListAsync();
 
         }
-        public Task CreateAsync(FrequentlyAskedQuestionFormModel model)
+        public async Task CreateAsync(FrequentlyAskedQuestionFormModel model)
         {
-            throw new NotImplementedException();
+            FrequentlyAskedQuestion faq = new FrequentlyAskedQuestion()
+            {
+                Question = model.Question,
+                Answer = model.Answer
+            };
+
+            await repository.AddAsync(faq);
+            await repository.SaveChangesAsync();
         }
 
-        public Task DeleteAsync(int FAQId)
+
+        public async Task DeleteAsync(int faqId)
         {
-            throw new NotImplementedException();
+            await repository.DeleteAsync<FrequentlyAskedQuestion>(faqId);
+            await repository.SaveChangesAsync();
         }
 
-        public Task EditAsync(int FAQId, FrequentlyAskedQuestionFormModel model)
+        public async Task EditAsync(int faqId, FrequentlyAskedQuestionFormModel model)
         {
-            throw new NotImplementedException();
+            var faq = await repository.GetByIdAsync<FrequentlyAskedQuestion>(faqId);
+
+            if (faq != null)
+            {
+                faq.Question = model.Question;
+                faq.Answer = model.Answer;
+
+                await repository.SaveChangesAsync();
+            }
         }
 
-        
+        public async Task<bool> ExistsAsync(int id)
+        {
+            return await repository.AllReadOnly<FrequentlyAskedQuestion>()
+                .AnyAsync(h => h.Id == id);
+        }
+        public async Task<FrequentlyAskedQuestionModel> FaqById(int id)
+        {
+            return await repository.AllReadOnly<FrequentlyAskedQuestion>()
+                .Where(h => h.Id == id)
+                .Select(h => new FrequentlyAskedQuestionModel()
+                {
+                    Question = h.Question,
+                    Answer = h.Answer
+                })
+                .FirstAsync();
+        }
+
+
     }
 }

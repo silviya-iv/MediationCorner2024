@@ -5,6 +5,7 @@ namespace MediationCorner.Core.Models.FAQ
 {
     public class FrequentlyAskedQuestionModel
     {
+        public int Id { get; set; }
 
         [Display(Name = "Въпрос")]
         public string Question { get; set; } = null!;

@@ -16,6 +16,9 @@ namespace MediationCorner.Core.Contracts
 
         Task EditAsync(int FAQId, FrequentlyAskedQuestionFormModel model);
 
+        Task<bool> ExistsAsync(int id);
+        Task<FrequentlyAskedQuestionModel> FaqById(int id);
+
         Task DeleteAsync(int FAQId);
 
 
