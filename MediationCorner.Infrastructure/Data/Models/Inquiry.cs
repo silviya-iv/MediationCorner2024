@@ -21,9 +21,10 @@ namespace MediationCorner.Infrastructure.Data.Models
         [Comment("Inquiry description")]
         public string Description { get; set; }= null!;
 
+       
         [StringLength(InitiatorPhoneMaxLength)]
         [Comment("Inquiry initiator's phone number ")]
-        public string? PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; } = null!;
 
         [Comment("Date of the iquiry initiation")]
         public DateTime Date { get; set; }= DateTime.Now;

@@ -1,0 +1,25 @@
+﻿@model IEnumerable<AppointmentViewModel>
+    
+    @{
+    ViewBag.Title = "Моите часове";
+}
+<h2>@ViewBag.Title</h2>
+
+@if(Model.Count()==0)
+{
+    <p>Нямате запазени часове</p>
+}
+else
+{
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>
+                <p> @item.ShortDesription</p>
+                <p>@item.StartTime</p>
+                <p>@item.EndTime</p>
+            </li>
+           
+        }
+    </ul>
+}

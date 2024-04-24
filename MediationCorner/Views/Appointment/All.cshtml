@@ -1,0 +1,21 @@
+﻿@model IEnumerable<AppointmentViewModel>
+
+@{
+    ViewBag.Title = "Всички запазени часове";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@if(User.IsAdmin()){
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>
+            <p> @item.ShortDesription</p>
+            <p>@item.StartTime</p>
+            <p>@item.EndTime</p>
+        </li>
+
+    }
+</ul>
+}

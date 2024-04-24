@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Правни запитвания";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@if (User.IsAdmin())
+{
+    <a asp-area="" asp-controller="Inquiry" asp-action="All" class="btn btn-primary btn-lg" role="button">Всички запитвания</a>
+}
+else
+{
+    <a asp-area="" asp-controller="Inquiry" asp-action="Mine" class="btn btn-primary btn-lg" role="button">Моите запитвания</a>
+    <a asp-area="" asp-controller="Inquiry" asp-action="Add" class="btn btn-primary btn-lg" role="button">Направи запитване</a>
+}

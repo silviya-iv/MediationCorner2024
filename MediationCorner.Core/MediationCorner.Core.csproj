@@ -15,12 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\Appointment\" />
     <Folder Include="Models\MediationRequest\" />
-    <Folder Include="Models\Inquiry\" />
     <Folder Include="Models\Lecturer\" />
     <Folder Include="Models\Seminar\" />
-    <Folder Include="Models\Responce\" />
     <Folder Include="Models\ProgressStatus\" />
   </ItemGroup>
 

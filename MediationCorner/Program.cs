@@ -18,7 +18,7 @@ builder.Services.AddControllersWithViews(options =>
 });
 
 builder.Services.AddApplicationServices();
-//builder.Services.AddMemoryCache();
+builder.Services.AddMemoryCache();
 
 var app = builder.Build();
 
@@ -56,7 +56,7 @@ app.UseEndpoints(endpoints =>
              pattern: "{controller=Home}/{action=Index}/{id?}"
      );
 
-   // endpoints.MapDefaultControllerRoute();
+    endpoints.MapDefaultControllerRoute();
     endpoints.MapRazorPages();
 });
 

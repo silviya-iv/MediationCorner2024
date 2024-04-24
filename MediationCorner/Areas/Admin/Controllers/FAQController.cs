@@ -2,6 +2,7 @@
 using MediationCorner.Core.Contracts;
 using MediationCorner.Core.Models.FAQ;
 using MediationCorner.Infrastructure.Common;
+using MediationCorner.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Drawing.Printing;
 using System.Security.Claims;
@@ -56,7 +57,7 @@ namespace MediationCorner.Areas.Admin.Controllers
             }
             await FAQService.CreateAsync(model);
 
-            return RedirectToAction("All", "FAQ");
+           return RedirectToAction("All", "FAQ");
          }
 
         [HttpGet]

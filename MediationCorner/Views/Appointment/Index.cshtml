@@ -1,0 +1,82 @@
+﻿@model AppointmentViewModel
+
+@{
+    ViewBag.Title = "Запази час";
+}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.dhtmlx.com/scheduler/edge/dhtmlxscheduler_material.css">
+<script src="https://cdn.dhtmlx.com/scheduler/edge/dhtmlxscheduler.js"></script>
+<script src="https://cdn.dhtmlx.com/scheduler/edge/ext/dhtmlxscheduler_timeline.js"></script>
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("AddAppointment", "Appointment", FormMethod.Post, new { @class = "appointment-form" }))
+{
+    @Html.ValidationSummary(true)
+    <div>
+        @Html.LabelFor(model => model.ShortDesription, "Описание")
+        @Html.TextBoxFor(model => model.ShortDesription)
+        @Html.ValidationMessageFor(model => model.ShortDesription)
+    </div>
+    <br>
+    <div>
+        @Html.LabelFor(model => model.StartTime, "Начален час")
+        @Html.TextBoxFor(model => model.StartTime, "{0:dd-MM-yyyy HH:mm}", new { @class = "datetimepicker",  placeholder = "дд-мм-гггг чч:мм"  })
+        @Html.ValidationMessageFor(model => model.StartTime)
+    </div>
+    <br>
+    <div>
+        @Html.LabelFor(model => model.EndTime, "Краен час")
+        @Html.TextBoxFor(model => model.EndTime, "{0:dd-MM-yyyy HH:mm}", new { @class = "datetimepicker",  placeholder = "дд-мм-гггг чч:мм"})
+        @Html.ValidationMessageFor(model => model.EndTime)
+    </div>
+    <br>
+    <input type="submit" value="Запази час" />
+}
+@if(User.IsAdmin())
+{
+    <a asp-area="" asp-controller="Appointment" asp-action="All" class="btn btn-primary btn-lg" role="button">Всички запазени часове</a>
+}
+else
+{
+    <a asp-area="" asp-controller="Appointment" asp-action="Mine" class="btn btn-primary btn-lg" role="button">Моите запазени часове</a>
+
+}
+
+<div id="scheduler_here" class="dhx_cal_container" style="width:100%; height:500px;">
+    <div class="dhx_cal_navline">
+        <div class="dhx_cal_prev_button">&nbsp;</div>
+        <div class="dhx_cal_next_button">&nbsp;</div>
+        <div class="dhx_cal_today_button"></div>
+        <div class="dhx_cal_date"></div>
+        <div class="dhx_cal_tab" name="day_tab" style="right:204px;"></div>
+        <div class="dhx_cal_tab" name="week_tab" style="right:140px;"></div>
+        <div class="dhx_cal_tab" name="month_tab" style="right:76px;"></div>
+    </div>
+    <div class="dhx_cal_header"></div>
+    <div class="dhx_cal_data"></div>
+</div>
+
+<script type="text/javascript">
+    scheduler.config.xml_date = "%Y-%m-%d %H:%i";
+    scheduler.init('scheduler_here', new Date(), "week");
+
+    scheduler.load("/Appointment/GetAppointments");
+
+    scheduler.attachEvent("onEventAdded", function (id, ev) {
+        var form = document.forms[0];
+        form.submit();
+    });
+
+    scheduler.attachEvent("onBeforeEventDelete", function (id, e) {
+        if (!confirm("Are you sure you want to delete this appointment?")) {
+            return false;
+        }
+        return true;
+    });
+</script>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

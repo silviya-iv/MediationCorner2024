@@ -19,11 +19,11 @@
     @if (this.User?.Identity?.IsAuthenticated ?? false&& User.IsAdmin())
     {
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Appointment" asp-action="ALl">Запазени часове</a>
+            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Appointment" asp-action="Index">Запазени часове</a>
         </li>
         
          <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Inquiry" asp-action="All">Запитвания</a>
+            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Inquiry" asp-action="Index">Запитвания</a>
         </li>
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="Admin" asp-controller="Mediation" asp-action="All">Заявки за медиация</a>
