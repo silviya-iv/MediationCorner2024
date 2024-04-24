@@ -1,9 +1,7 @@
 ﻿using MediationCorner.Infrastructure.Data.Configurations;
 using MediationCorner.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection.Emit;
 
 namespace MediationCorner.Infrastructure.Data
 {

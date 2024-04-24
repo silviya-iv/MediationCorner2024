@@ -1,16 +1,9 @@
 ﻿using MediationCorner.Core.Contracts;
-using MediationCorner.Core.Models.Appointment;
-using MediationCorner.Core.Models.FAQ;
 using MediationCorner.Core.Models.Inquiry;
 using MediationCorner.Core.Models.Responce;
 using MediationCorner.Infrastructure.Common;
 using MediationCorner.Infrastructure.Data.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MediationCorner.Core.Services
 {
@@ -48,16 +41,16 @@ namespace MediationCorner.Core.Services
         {
 
 
-            return await repository.All<Inquiry>().Where(i=>i.InitiatorId==id)
+            return await repository.All<Inquiry>().Where(i => i.InitiatorId == id)
                 .Select(i => new InquiryViewModel()
                 {
                     Id = i.Id,
                     Title = i.Title,
                     Description = i.Description,
                     InitiatorUserName = i.Initiator.FirstName,
-                    PhoneNumber = i.PhoneNumber,
-                    Date = i.Date,
-                    
+                    PhoneNumber = !string.IsNullOrEmpty(i.PhoneNumber) ? i.PhoneNumber : "",
+                    Date = i.Date
+                   
                 }).ToListAsync();
         }
 

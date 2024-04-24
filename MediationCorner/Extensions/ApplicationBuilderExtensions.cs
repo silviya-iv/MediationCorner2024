@@ -1,9 +1,6 @@
 ﻿
-using MediationCorner.Infrastructure.Common;
-using MediationCorner.Infrastructure.Data;
 using MediationCorner.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using static MediationCorner.Core.Constants.AdminConstants;
 
 namespace Microsoft.AspNetCore.Builder
